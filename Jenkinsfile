@@ -70,4 +70,4 @@ pipeline {
             slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed!", color: 'danger')
         }
     }
-
+    }
