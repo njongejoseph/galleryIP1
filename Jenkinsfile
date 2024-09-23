@@ -6,11 +6,8 @@ pipeline {
         
     }
 
-    environment {
-        NODE_HOME = tool name: 'NodeJS', type: 'NodeJSInstallation'
-        PATH = "${NODE_HOME}/bin:${env.PATH}"
-    }
-
+  
+  
     stages {
         stage('Checkout') {
             steps {
