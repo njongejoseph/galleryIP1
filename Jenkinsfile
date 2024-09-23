@@ -47,8 +47,6 @@ pipeline {
             }
         }
 
-
-
             stage('Deploy to Onrender.com') {
                         steps {
                             script {
@@ -62,9 +60,6 @@ pipeline {
 
                     }
 
-
-
-
     post {
         success {
             echo 'Pipeline succeeded!'
@@ -75,4 +70,5 @@ pipeline {
             slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed!", color: 'danger')
         }
     }
+}
 }
