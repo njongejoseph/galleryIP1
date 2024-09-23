@@ -65,7 +65,7 @@ pipeline {
        stage('Notify Slack') {
             steps {
                 // Send Slack notification on successful deploy
-                slackSend channel: env.SLACK_CHANNEL'josephip1', color: 'good', message: "Build #${env.BUILD_NUMBER} deployed successfully. View at: ${env.RENDER_URL}"
+                slackSend channel:'josephip1', color: 'good', message: "Build #${env.BUILD_NUMBER} deployed successfully. View at: ${env.RENDER_URL}"
             } 
             
 
