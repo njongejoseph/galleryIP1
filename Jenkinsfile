@@ -60,9 +60,12 @@ pipeline {
                         }
 
                     }
-                // Deployment commands (e.g., copying files, running scripts)
-               
-                // Add your deployment commands here
+    }
+   stage('Notify Slack') {
+            steps {
+                // Send Slack notification on successful deploy
+                slackSend channel: 'josephip1', color: 'good', message: "Build #${env.BUILD_NUMBER} deployed successfully. View at: ${env.RENDER_URL}"
+            } 
             
 
     }
