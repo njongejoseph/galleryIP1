@@ -59,8 +59,15 @@ pipeline {
                         }
 
                     }
+stage('Slack') {
+            steps {
+                echo 'Slack Notification...'
+                // Your test commands here
+            }
+}
 
-    post{
+
+    post {
         success {
             echo 'Pipeline succeeded!'
             slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) succeeded!", color: env.SLACK_COLOR)
