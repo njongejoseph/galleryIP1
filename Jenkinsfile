@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    triggers {
+        
+        githubPush()
+        
+    }
 
     environment {
         NODE_HOME = tool name: 'NodeJS', type: 'NodeJSInstallation'
