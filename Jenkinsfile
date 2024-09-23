@@ -47,6 +47,8 @@ pipeline {
             }
         }
 
+
+
             stage('Deploy to Onrender.com') {
                         steps {
                             script {
@@ -59,12 +61,16 @@ pipeline {
                         }
 
                     }
-stage('Slack') {
+
+       stage('Notify Slack') {
             steps {
-                echo 'Slack Notification...'
-                // Your test commands here
-            }
-}
+                // Send Slack notification on successful deploy
+                slackSend channel:'josephip1', color: 'good', message: "Build #${env.BUILD_NUMBER} deployed successfully. View at: ${env.RENDER_URL}"
+            } 
+            
+
+    }
+    }
 
 
     post {
@@ -76,6 +82,5 @@ stage('Slack') {
             echo 'Pipeline failed!'
             slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed!", color: 'danger')
         }
-    }
     }
 }
