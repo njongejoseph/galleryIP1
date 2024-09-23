@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Install my Dependencies') {
             steps {
                 // Install Node.js dependencies
                 sh 'npm install'
