@@ -1,8 +1,12 @@
 pipeline {
     agent any
-    tools{
-        nodejs 'NodeJS 22.9.0'
+    tools{ nodejs 'NodeJS 22.9.0'}
+        
+        environment {
+        DEPLOY_HOOK_URL = 'https://api.render.com/deploy/srv-cron79pu0jms73cc4720?key=PaAZ3Dxt0jU' 
+      
     }
+
     triggers {
         
         githubPush()
@@ -42,13 +46,25 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
+
+
+            stage('Deploy to Render122') {
+                        steps {
+                            script {
+                                def response = sh(script: """
+                                    curl -X POST ${DEPLOY_HOOK_URL}
+                                """, returnStdout: true).trim()
+                                
+                                echo "Deployment Response: ${response}"
+                            }
+                        }
+
+                    }
                 // Deployment commands (e.g., copying files, running scripts)
-                echo 'Deploying the application...'
+               
                 // Add your deployment commands here
-            }
-        }
+            
+
     }
 
     post {
