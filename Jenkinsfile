@@ -78,11 +78,11 @@ pipeline {
     post {
         success {
             echo 'Pipeline succeeded!'
-            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) succeeded! View at: ${env.RENDER_URL} ", color: env.SLACK_COLOR)
+            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) succeeded! View render at: ${env.RENDER_URL} ", color: env.SLACK_COLOR)
         }
         failure {
             echo 'Pipeline failed!'
-            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed! View at: ${env.RENDER_URL}", color: 'danger')
+            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed! View render at: ${env.RENDER_URL}", color: 'danger')
         }
     }
 }
