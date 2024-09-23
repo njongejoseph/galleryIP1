@@ -48,7 +48,7 @@ pipeline {
 
 
 
-            stage('Deploy to Render122') {
+            stage('Deploy to Onrender.com') {
                         steps {
                             script {
                                 def response = sh(script: """
@@ -69,6 +69,8 @@ pipeline {
             
 
     }
+    }
+    
 
     post {
         success {
@@ -78,5 +80,4 @@ pipeline {
             echo 'Pipeline failed!'
         }
     }
-}
 }
