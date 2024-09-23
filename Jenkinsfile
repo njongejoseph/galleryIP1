@@ -4,8 +4,10 @@ pipeline {
         
         environment {
         DEPLOY_HOOK_URL = 'https://api.render.com/deploy/srv-cron79pu0jms73cc4720?key=PaAZ3Dxt0jU' 
+        RENDER_URL = 'https://galleryip1-l30p.onrender.com/' 
        SLACK_CHANNEL = 'C07NDBQ7LDC,#ip1-assingment'
        SLACK_COLOR = 'good'
+
     }
 
     triggers {
@@ -76,11 +78,11 @@ pipeline {
     post {
         success {
             echo 'Pipeline succeeded!'
-            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) succeeded!", color: env.SLACK_COLOR)
+            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) succeeded! View at: ${env.RENDER_URL} ", color: env.SLACK_COLOR)
         }
         failure {
             echo 'Pipeline failed!'
-            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed!", color: 'danger')
+            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed! View at: ${env.RENDER_URL}", color: 'danger')
         }
     }
 }
