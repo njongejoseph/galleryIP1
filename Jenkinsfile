@@ -4,7 +4,8 @@ pipeline {
         
         environment {
         DEPLOY_HOOK_URL = 'https://api.render.com/deploy/srv-cron79pu0jms73cc4720?key=PaAZ3Dxt0jU' 
-      
+       SLACK_CHANNEL = 'C07NDBQ7LDC,#ip1-assingment'
+       SLACK_COLOR = 'good'
     }
 
     triggers {
@@ -64,20 +65,22 @@ pipeline {
        stage('Notify Slack') {
             steps {
                 // Send Slack notification on successful deploy
-                slackSend channel: 'josephip1', color: 'good', message: "Build #${env.BUILD_NUMBER} deployed successfully. View at: ${env.RENDER_URL}"
+                slackSend channel: env.SLACK_CHANNEL'josephip1', color: 'good', message: "Build #${env.BUILD_NUMBER} deployed successfully. View at: ${env.RENDER_URL}"
             } 
             
 
     }
     }
-    
+
 
     post {
         success {
             echo 'Pipeline succeeded!'
+            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) succeeded!", color: env.SLACK_COLOR)
         }
         failure {
             echo 'Pipeline failed!'
+            slackSend(channel: env.SLACK_CHANNEL, message: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) failed!", color: 'danger')
         }
     }
 }
