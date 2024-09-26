@@ -1,0 +1,1 @@
+Click on the link to access the website on render https://galleryip1-l30p.onrender.com/
