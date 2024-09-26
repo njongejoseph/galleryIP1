@@ -30,24 +30,20 @@ pipeline {
             steps {
                 // Install Node.js dependencies
                 sh 'npm install'
+                sh 'npm install mocha'
+                sh 'npm install chai'
             }
         }
 
         stage('Run Tests') {
             steps {
                 // Run your test suite
-                // sh 'npm test'
+                sh 'npm test'
                 echo 'Testing the application...'
             }
         }
 
-        stage('Build') {
-            steps {
-                // Build your application (if needed)
-                //sh 'npm run build'
-                echo 'Building the application...'
-            }
-        }
+
 
 
 
